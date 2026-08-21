@@ -1,0 +1,40 @@
+{
+  "n_total": 14487,
+  "n_fatal": 13264,
+  "n_nofatal": 1223,
+  "case_fatality_forense_pct": 91.6,
+  "advertencia": "case-fatality forense NO es letalidad poblacional; denominador no-fatal esta seleccionado (solo lesionados que llegan a valoracion forense).",
+  "pilar_primario": "perfil descriptivo de defunciones con TCE (sin muestra no-fatal)",
+  "bounding": [
+    {
+      "contraste": "Sexo: Mujer vs Hombre",
+      "OR_case_fatality_crudo": 0.319,
+      "razon_captacion_nofatal_que_explicaria_OR": 3.13,
+      "interpretacion": "Un OR de 0.32 se explicaria enteramente si los lesionados 'Mujer' llegaran a valoracion forense 3.1x mas que 'Hombre', aun con letalidad verdadera IGUAL.",
+      "f_i": 1892,
+      "nf_i": 419,
+      "f_r": 11372,
+      "nf_r": 804
+    },
+    {
+      "contraste": "Zona: Urbano vs Rural",
+      "OR_case_fatality_crudo": 0.127,
+      "razon_captacion_nofatal_que_explicaria_OR": 7.86,
+      "interpretacion": "Un OR de 0.13 se explicaria enteramente si los lesionados 'Urbano' llegaran a valoracion forense 7.9x mas que 'Rural', aun con letalidad verdadera IGUAL.",
+      "f_i": 7173,
+      "nf_i": 1059,
+      "f_r": 5004,
+      "nf_r": 94
+    },
+    {
+      "contraste": "Rol: Pasajero vs Conductor",
+      "OR_case_fatality_crudo": 0.406,
+      "razon_captacion_nofatal_que_explicaria_OR": 2.46,
+      "interpretacion": "Un OR de 0.41 se explicaria enteramente si los lesionados 'Pasajero' llegaran a valoracion forense 2.5x mas que 'Conductor', aun con letalidad verdadera IGUAL.",
+      "f_i": 2471,
+      "nf_i": 441,
+      "f_r": 10793,
+      "nf_r": 782
+    }
+  ]
+}

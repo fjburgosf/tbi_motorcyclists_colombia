@@ -1,0 +1,16 @@
+# Raw/intermediate data (3.7 GB; regenerable from public sources via scripts/)
+data/raw/
+data/interim/
+data/processed/
+
+# Licensed / non-redistributable
+scopus/
+Template/
+
+# Local artifacts
+logs/
+*.bak
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store

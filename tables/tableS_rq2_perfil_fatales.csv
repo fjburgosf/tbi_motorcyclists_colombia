@@ -1,0 +1,27 @@
+variable,categoria,n_fatales,pct
+Sexo,Hombre,11372,85.7
+Sexo,Mujer,1892,14.3
+Grupo de edad,(20 a 24),2568,19.4
+Grupo de edad,(25 a 29),2219,16.7
+Grupo de edad,(30 a 34),1595,12.0
+Grupo de edad,(35 a 39),1251,9.4
+Grupo de edad,(40 a 44),987,7.4
+Grupo de edad,(18 a 19),849,6.4
+Grupo de edad,(45 a 49),796,6.0
+Grupo de edad,(50 a 54),671,5.1
+Grupo de edad,(15 a 17),642,4.8
+Grupo de edad,(55 a 59),505,3.8
+Grupo de edad,(60 a 64),414,3.1
+Grupo de edad,(65 a 69),237,1.8
+Grupo de edad,(10 a 14),165,1.2
+Grupo de edad,(70 a 74),132,1.0
+Grupo de edad,(75 a 79),74,0.6
+Grupo de edad,(00 a 04),70,0.5
+Grupo de edad,(05 a 09),46,0.3
+Grupo de edad,(80 y más),40,0.3
+Grupo de edad,Fetos,3,0.0
+Zona,Urbano,7173,54.1
+Zona,Rural,5004,37.7
+Zona,Otro/ND,1087,8.2
+Rol,Conductor,10793,81.4
+Rol,Pasajero,2471,18.6

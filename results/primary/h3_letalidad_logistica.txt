@@ -1,0 +1,20 @@
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:          outcome_fatal   No. Observations:                13330
+Model:                            GLM   Df Residuals:                    13325
+Model Family:                Binomial   Df Model:                            4
+Link Function:                  Logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -3333.6
+Date:                Thu, 20 Aug 2026   Deviance:                       6667.2
+Time:                        16:18:45   Pearson chi2:                 1.42e+04
+No. Iterations:                     7   Pseudo R-squ. (CS):            0.08474
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept              3.4581      0.114     30.349      0.000       3.235       3.681
+sexo[T.Mujer]         -0.7394      0.085     -8.656      0.000      -0.907      -0.572
+zona_bin[T.Urbano]    -2.0654      0.110    -18.717      0.000      -2.282      -1.849
+rol[T.Pasajero]       -0.5299      0.083     -6.377      0.000      -0.693      -0.367
+year_c                 0.2026      0.011     17.728      0.000       0.180       0.225
+======================================================================================

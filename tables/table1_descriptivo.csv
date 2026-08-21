@@ -1,0 +1,15 @@
+Variable,N,%
+N total casos moto con TCE,14487,
+  Fatales,13264,91.6%
+  No fatales,1223,8.4%
+Sexo,,
+  Hombre,12176,84.0%
+  Mujer,2311,16.0%
+Rol,,
+  Conductor,11575,79.9%
+  Pasajero,2912,20.1%
+Zona,,
+  Cabecera municipal,8232,56.8%
+  Parte rural (vereda y campo),5098,35.2%
+"  Centro poblado (corregimiento, inspección de policía y caserío)",840,5.8%
+  Sin información,317,2.2%
