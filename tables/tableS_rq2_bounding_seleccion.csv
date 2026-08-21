@@ -1,4 +1,0 @@
-contraste,OR_case_fatality_crudo,razon_captacion_nofatal_que_explicaria_OR,interpretacion,f_i,nf_i,f_r,nf_r
-Sexo: Mujer vs Hombre,0.319,3.13,"Un OR de 0.32 se explicaria enteramente si los lesionados 'Mujer' llegaran a valoracion forense 3.1x mas que 'Hombre', aun con letalidad verdadera IGUAL.",1892,419,11372,804
-Zona: Urbano vs Rural,0.127,7.86,"Un OR de 0.13 se explicaria enteramente si los lesionados 'Urbano' llegaran a valoracion forense 7.9x mas que 'Rural', aun con letalidad verdadera IGUAL.",7173,1059,5004,94
-Rol: Pasajero vs Conductor,0.406,2.46,"Un OR de 0.41 se explicaria enteramente si los lesionados 'Pasajero' llegaran a valoracion forense 2.5x mas que 'Conductor', aun con letalidad verdadera IGUAL.",2471,441,10793,782
