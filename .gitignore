@@ -7,6 +7,10 @@ data/processed/
 scopus/
 Template/
 
+# Claude Code (internal tooling — not part of reproducibility)
+CLAUDE.md
+.claude/
+
 # Local artifacts
 logs/
 *.bak
