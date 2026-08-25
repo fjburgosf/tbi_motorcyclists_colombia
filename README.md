@@ -1,10 +1,8 @@
 # TBI Mortality Among Motorcyclists in Colombia, 2015–2024
 
-Reproducible analysis pipeline for the manuscript:
-
-> *"Traumatic Brain Injury Mortality Among Motorcyclists in Colombia, 2015–2024:
-> National Trend, Territorial Inequality, and a Data-Comparability Warning for
-> Vital Statistics Research"* — submitted to *Safety* (MDPI).
+Reproducible analysis pipeline for a national, decade-long study of traumatic brain
+injury (TBI) mortality among motorcyclists in Colombia (2015–2024): national trend,
+territorial inequality, and a vital-statistics data-comparability analysis.
 
 **Author:** Francisco Burgos-Florez · Universidad Nacional de Colombia, Sede La Paz,
 Cesar, Colombia · fjburgosf@unal.edu.co
@@ -14,7 +12,7 @@ Cesar, Colombia · fjburgosf@unal.edu.co
 ## Repository contents
 
 ```
-scripts/    Analysis pipeline (13 scripts, numbered in execution order)
+scripts/    Analysis pipeline (numbered scripts in execution order) + build/verification utilities
 requirements.txt  Python dependencies
 ```
 
@@ -125,9 +123,18 @@ Results go to `results/primary/`.
 python scripts/09b_runt_sensitivity.py       # RUNT motorcycle-fleet denominator
 python scripts/09c_rq2_profile_bounding.py   # RQ2 descriptive profile + selection bounds
 python scripts/09d_referee_revisions.py      # TBI-specific trend; DANE 2015–2021 IRR
+python scripts/09e_hierarchical_shrinkage.py # EB Poisson–gamma shrinkage + hierarchical logistic by HMC (R-hat/ESS)
+python scripts/09f_referee_tables_fig.py     # shrinkage figure + supplementary tables from 09e outputs
 ```
 
 Results go to `results/robustness/`.
+
+`09e_hierarchical_shrinkage.py` fits an empirical-Bayes Poisson–gamma model that
+shrinks departmental rates toward the national mean (stabilising small-count
+departments) and re-fits the department random-intercept logistic model by
+Hamiltonian Monte Carlo (self-contained NumPy/SciPy sampler, four chains, split-R-hat
+and bulk ESS), confirming the variational-Bayes result. `09f_referee_tables_fig.py`
+builds the shrinkage figure and the associated supplementary tables from those outputs.
 
 ### Step 10 — Figures
 
@@ -144,6 +151,22 @@ python scripts/11_tables.py
 ```
 
 Generates Tables 1–3 in `tables/`.
+
+---
+
+## Additional utilities
+
+These helpers operate on the pipeline outputs and are not part of the numbered
+execution order:
+
+| Script | Purpose |
+|---|---|
+| `export_figures_600dpi.py` | Re-export all figures at 600 dpi (PNG + TIFF) |
+| `verify_references.py` | Cross-check reference metadata (DOIs, volumes, pages) via Crossref |
+| `verify_tables_figures.py` | Internal-consistency checks across tables and figures |
+| `renumber_references.py` | Renumber in-text citations and the reference list |
+| `validate_docx.py` | Structural validation of generated `.docx` documents |
+| `build_manuscript_docx.py`, `build_medicas_uis.py` | Assemble formatted document outputs from the pipeline results |
 
 ---
 
