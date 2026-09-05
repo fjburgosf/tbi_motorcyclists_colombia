@@ -12,7 +12,7 @@ from docx.shared import Pt, Mm, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 MD = BASE / "manuscript" / "manuscript_medicas_uis_EN.md"
 FIG = BASE / "figures"
 OUTDIR = BASE / "manuscript" / "A someter en medicas uis"
@@ -25,19 +25,19 @@ BODY_FONT = "Times New Roman"
 RESUMEN = (
     "Introducción: los motociclistas concentran una proporción desproporcionada de las "
     "muertes por siniestros viales en América Latina y el traumatismo craneoencefálico es un "
-    "determinante principal de esa mortalidad; no obstante, Colombia carecía de una "
+    "determinante principal de esa mortalidad. No obstante, Colombia carecía de una "
     "caracterización nacional reproducible de esta problemática. Objetivo: caracterizar la "
     "mortalidad por traumatismo craneoencefálico en motociclistas entre 2015 y 2024 y evaluar "
     "la comparabilidad de las principales fuentes de datos del país. Metodología: se analizaron "
     "dos fuentes abiertas de microdatos, los registros forenses de lesiones por evento de "
     "transporte y las estadísticas vitales oficiales, vinculadas ecológicamente por departamento "
-    "y año; la tendencia nacional se modeló con regresión binomial negativa y el desenlace fatal "
+    "y año. La tendencia nacional se modeló con regresión binomial negativa y el desenlace fatal "
     "frente al no fatal con regresión logística multivariable y multinivel bayesiana. Resultados: "
     "el traumatismo craneoencefálico representó entre el 30 % y el 36 % de las muertes de "
-    "motociclistas; la mortalidad específica aumentó a razón de 1,035 veces por año, concentrada "
-    "entre 2022 y 2024; la desigualdad territorial fue marcada, con Casanare y Arauca como los "
-    "departamentos de mayor tasa; las víctimas fueron mayoritariamente hombres jóvenes "
-    "conductores; el registro vital subestimó las muertes entre 10 % y 25 % antes de 2022, "
+    "motociclistas. La mortalidad específica aumentó a razón de 1,035 veces por año, concentrada "
+    "entre 2022 y 2024. La desigualdad territorial fue marcada, con Casanare y Arauca como los "
+    "departamentos de mayor tasa. Las víctimas fueron mayoritariamente hombres jóvenes "
+    "conductores, y el registro vital subestimó las muertes entre 10 % y 25 % antes de 2022, "
     "convergiendo después de una integración del registro civil. Discusión y conclusiones: se "
     "aporta una caracterización nacional y reproducible de esta mortalidad y una "
     "advertencia cuantificada sobre la discontinuidad de cobertura del registro vital, relevante "
@@ -305,13 +305,13 @@ def add_h2(doc, text):
 
 
 ETHICS_TEXT = (
-    "Ethical considerations: this study used exclusively publicly available, de-identified "
-    "secondary data (individual-level microdata published by the National Institute of Legal "
+    "Ethical considerations. This study used exclusively publicly available, deidentified "
+    "secondary data (individual level microdata published by the National Institute of Legal "
     "Medicine and Forensic Sciences and by the National Administrative Department of Statistics "
-    "through the Colombian open-data portal, together with official aggregated population "
+    "through the Colombian open data portal, together with official aggregated population "
     "statistics), none of which can be traced to identifiable individuals. No new data were "
-    "collected from human participants and no identifiable personal information was accessed; "
-    "therefore, approval by a research ethics committee was not required, in accordance with "
+    "collected from human participants and no identifiable personal information was accessed. "
+    "Therefore, approval by a research ethics committee was not required, in accordance with "
     "Resolution 8430 of 1993 of the Colombian Ministry of Health."
 )
 
@@ -357,7 +357,7 @@ def process_body(doc, lines):
                      align=WD_ALIGN_PARAGRAPH.JUSTIFY, space_after=4)
             i += 1
             continue
-        if s.startswith("\u2020") or s.startswith("*Note:*") or s.startswith("Interpretation:"):
+        if s.startswith("\u2020") or s.startswith("*Note"):
             add_para(doc, s, size=10, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
             i += 1
             continue
@@ -436,7 +436,7 @@ def build_main():
     add_h1(doc, "Material suplementario")
     add_para(doc,
              "Tablas S1\u2013S6 y Figuras S1\u2013S2 se presentan en un archivo aparte "
-             "(\u201cMaterial_suplementario_Medicas_UIS.docx\u201d).",
+             "(Material_suplementario_Medicas_UIS.docx).",
              align=WD_ALIGN_PARAGRAPH.JUSTIFY)
 
     # references (Vancouver)
@@ -500,7 +500,7 @@ def build_supp():
                      align=WD_ALIGN_PARAGRAPH.JUSTIFY, space_after=4)
             i += 1
             continue
-        if s.startswith("\u2020") or s.startswith("*Note:*") or s.startswith("Interpretation:"):
+        if s.startswith("\u2020") or s.startswith("*Note"):
             add_para(doc, s, size=10, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
             i += 1
             continue

@@ -22,7 +22,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.oxml import parse_xml
 
 # --------------------------------------------------------------------------- paths
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 MD_PATH = BASE / "manuscript" / "manuscript_safety_final_EN.md"
 OUT_PATH = BASE / "manuscript" / "manuscript_safety_final_EN.docx"
 FIG_DIR = BASE / "figures"

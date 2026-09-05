@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 ROB = BASE / "results" / "robustness"
 FIG = BASE / "figures"
 

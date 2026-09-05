@@ -15,7 +15,7 @@ Checks:
 import re
 from pathlib import Path
 
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 MD = BASE / "manuscript" / "manuscript_safety_final_EN.md"
 DOCX = BASE / "manuscript" / "manuscript_safety_final_EN.docx"
 

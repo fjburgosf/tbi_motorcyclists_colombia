@@ -17,7 +17,7 @@ import pandas as pd
 import statsmodels.api as sm
 from scipy.stats import spearmanr
 
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 PROC = BASE / "data/processed"
 EXPL = BASE / "results/exploratory"
 OUT = BASE / "results/robustness"

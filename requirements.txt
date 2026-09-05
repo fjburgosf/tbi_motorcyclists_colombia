@@ -6,3 +6,7 @@ matplotlib
 sodapy
 requests
 openpyxl
+pyreadstat
+geopandas
+shapely
+python-docx

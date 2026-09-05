@@ -31,7 +31,7 @@ import pandas as pd
 from scipy import optimize, stats
 from scipy.special import gammaln
 
-BASE = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+BASE = Path(__file__).resolve().parents[1]
 PROCESSED = BASE / "data" / "processed"
 OUT = BASE / "results" / "robustness"
 OUT.mkdir(parents=True, exist_ok=True)

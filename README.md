@@ -2,10 +2,13 @@
 
 Reproducible analysis pipeline for a national, decade-long study of traumatic brain
 injury (TBI) mortality among motorcyclists in Colombia (2015–2024): national trend,
-territorial inequality, and a vital-statistics data-comparability analysis.
+territorial inequality, spatial autocorrelation and ecological territorial
+correlates, and a vital-statistics data-comparability analysis.
 
-**Author:** Francisco Burgos-Florez · Universidad Nacional de Colombia, Sede La Paz,
-Cesar, Colombia · fjburgosf@unal.edu.co
+**Authors:** Alexander Rodríguez-Sanjuán (Universidad del Atlántico) ·
+Juan Guillermo Popayán-Hernández (Universidad Nacional de Colombia) ·
+Francisco Burgos-Florez (Universidad Nacional de Colombia, Sede La Paz, Cesar ·
+fjburgosf@unal.edu.co, corresponding)
 
 ---
 
@@ -31,6 +34,7 @@ they are downloaded automatically in Step 3.
 | DANE — vital statistics (deaths) | [microdatos.dane.gov.co](https://microdatos.dane.gov.co) | 2015–2024 |
 | DANE — departmental population projections | [dane.gov.co](https://www.dane.gov.co) | 2015–2024 |
 | RUNT2.0 — registered motorcycle fleet | `u3vn-bdcy` (datos.gov.co Socrata) | 2015–2024 |
+| Department polygons (DIVIPOLA codes, IGAC areas) | GeoJSON, pinned commit — downloaded automatically by `10_spatial_analysis.py` | static |
 
 ---
 
@@ -136,7 +140,29 @@ Hamiltonian Monte Carlo (self-contained NumPy/SciPy sampler, four chains, split-
 and bulk ESS), confirming the variational-Bayes result. `09f_referee_tables_fig.py`
 builds the shrinkage figure and the associated supplementary tables from those outputs.
 
-### Step 10 — Figures
+### Step 10 — Spatial analysis and territorial correlates
+
+```bash
+python scripts/10_spatial_analysis.py
+```
+
+Tests for spatial structure in departmental TBI mortality rates and screens
+ecological territorial correlates. Global Moran's I and Local Moran's I (LISA)
+are implemented from scratch on NumPy/SciPy (no `libpysal`/`esda` dependency),
+with queen-contiguity and k-nearest-neighbour weights, row standardisation and
+999 conditional permutations. Also computes Spearman correlations and a
+standardised OLS on the log rate.
+
+Department geometry is downloaded automatically on first run (pinned to an
+immutable commit). Outputs: `results/spatial/spatial_departments.csv`,
+`results/spatial/spatial_summary.json`, `figures/figS3_spatial.png` (600 dpi).
+
+Territorial variables that could not be obtained reproducibly from an open,
+department-aggregable source (terrain ruggedness, precipitation, road density)
+are **excluded rather than substituted**, and the exclusion is recorded in
+`spatial_summary.json`.
+
+### Step 11 — Figures
 
 ```bash
 python scripts/10_figures.py
@@ -144,7 +170,7 @@ python scripts/10_figures.py
 
 Generates Figures 1–3 and S1 in `figures/`.
 
-### Step 11 — Tables
+### Step 12 — Tables
 
 ```bash
 python scripts/11_tables.py
