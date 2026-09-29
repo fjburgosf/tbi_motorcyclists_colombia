@@ -44,10 +44,10 @@ repository; the scripts download the public data and write all results to
 ### Requirements
 
 - Python 3.12
-- Internet access (the scripts download the raw data; about 3.7 GB)
+- Internet access to download the public data (about 3.7 GB)
 
 ```bash
-pip install pandas numpy statsmodels scipy sodapy requests openpyxl pyreadstat geopandas shapely
+pip install pandas numpy scipy statsmodels geopandas pyreadstat openpyxl
 ```
 
 ### Step 1 — Get the scripts and create the folders
@@ -55,21 +55,56 @@ pip install pandas numpy statsmodels scipy sodapy requests openpyxl pyreadstat g
 ```bash
 git clone https://github.com/fjburgosf/tbi_motorcyclists_colombia.git
 cd tbi_motorcyclists_colombia
-mkdir -p data/raw data/interim data/processed results/exploratory results/primary results/robustness results/spatial results/sensitivity
+mkdir -p data/raw/medicina_legal data/raw/dane_poblacion data/interim data/processed results/exploratory results/primary results/robustness results/spatial results/sensitivity
 ```
 
-### Step 2 — Download and inspect the raw data
+### Step 2 — Download the data
+
+The RUNT fleet and the department polygons are downloaded by the scripts. The
+other sources must be downloaded once and saved with the names below.
+
+**Medicina Legal** (datos.gov.co; the full datasets have 73,403 and 342,796 records):
+
+```bash
+curl -o data/raw/medicina_legal/muertes_eventos_transporte_2015_2024.csv 'https://www.datos.gov.co/resource/s65h-7665.csv?$limit=100000'
+curl -o data/raw/medicina_legal/lesiones_eventos_transporte_2015_2024.csv 'https://www.datos.gov.co/resource/ezhf-hscf.csv?$limit=400000'
+```
+
+**DANE population projections** (departmental series):
+
+```bash
+curl -o data/raw/dane_poblacion/DCD-area-sexo-edad-proypoblacion-dep-2005-2017_VP.xlsx https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Departamental/DCD-area-sexo-edad-proypoblacion-dep-2005-2017_VP.xlsx
+curl -o data/raw/dane_poblacion/PPED-AreaSexoEdadDep-2018-2050_VP.xlsx https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Departamental/PPED-AreaSexoEdadDep-2018-2050_VP.xlsx
+```
+
+**DANE vital statistics, non-fetal deaths** (Estadísticas Vitales, EEVV). Download
+the Stata file of non-fetal deaths for each year from the DANE microdata catalog
+and save it at the path shown:
+
+| Year | Catalog page | Save as |
+|---|---|---|
+| 2015 | [catalog/475](https://microdatos.dane.gov.co/index.php/catalog/475) | `data/raw/dane_eevv_2015/BD-EEVV-Defuncionesnofetales-2015/nofetal2015.dta` |
+| 2016 | [catalog/519](https://microdatos.dane.gov.co/index.php/catalog/519) | `data/raw/dane_eevv_2016/BD-EEVV-Defuncionesnofetales-2016/nofetal2016.dta` |
+| 2017 | [catalog/652](https://microdatos.dane.gov.co/index.php/catalog/652) | `data/raw/dane_eevv_2017/BD-EEVV-Defuncionesnofetales-2017/nofetal2017.dta` |
+| 2018 | [catalog/652](https://microdatos.dane.gov.co/index.php/catalog/652) | `data/raw/dane_eevv_2018/BD-EEVV-Defuncionesnofetales-2018/nofetal2018.dta` |
+| 2019 | [catalog/696](https://microdatos.dane.gov.co/index.php/catalog/696) | `data/raw/dane_eevv_2019/BD-EEVV-Defuncionesnofetales-2019/nofetal2019.dta` |
+| 2020 | [catalog/732](https://microdatos.dane.gov.co/index.php/catalog/732) | `data/raw/dane_eevv_2020/BD-EEVV-Defuncionesnofetales-2020/nofetal2020.dta` |
+| 2021 | [catalog/775](https://microdatos.dane.gov.co/index.php/catalog/775) | `data/raw/dane_eevv_2021/BD-EEVV-Defuncionesnofetales-2021/nofetal2021.stata` |
+| 2022 | [catalog/807](https://microdatos.dane.gov.co/index.php/catalog/807) | `data/raw/dane_eevv_2022/BD-EEVV-Defuncionesnofetales-2022/nofetal2022.dta` |
+| 2023 | [catalog/876](https://microdatos.dane.gov.co/index.php/catalog/876) | `data/raw/dane_eevv_2023/BD-EEVV-Defuncionesnofetales-2023/BD-EEVV-Defuncionesnofetales-2023.dta` |
+| 2024 | [catalog/878](https://microdatos.dane.gov.co/index.php/catalog/878) | `data/raw/dane_eevv_2024/BD-EEVV-Defuncionesnofetales-2024/BD-EEVV-Defuncionesnofetales-2024.dta` |
+
+### Step 3 — Inspect the raw data
 
 ```bash
 python scripts/03_inspect_data.py
 python scripts/03b_inspect_data_panel_2015_2024.py
 ```
 
-Downloads the Medicina Legal and DANE microdata into `data/raw/`, audits the
-variables and builds the DANE annual panel of motorcyclist deaths with and
-without an associated S06 code.
+Audits the DANE variables and builds the annual panel of motorcyclist deaths
+with and without an associated S06 code (`results/exploratory/`).
 
-### Step 3 — Clean and filter
+### Step 4 — Clean and filter
 
 ```bash
 python scripts/04_clean_data.py
@@ -79,7 +114,7 @@ Filters both Medicina Legal datasets to motorcyclists and standardises the
 categorical variables. Outputs: `data/interim/medlegal_moto_fatal.csv` and
 `data/interim/medlegal_moto_nofatal.csv`.
 
-### Step 4 — Build the analysis datasets
+### Step 5 — Build the analysis datasets
 
 ```bash
 python scripts/05_construct_variables.py
@@ -88,7 +123,7 @@ python scripts/05_construct_variables.py
 Adds the DANE population denominators and builds the department-year panel and
 the individual-level dataset of forensic head-injury cases (`data/processed/`).
 
-### Step 5 — Registry comparison
+### Step 6 — Registry comparison
 
 ```bash
 python scripts/06_link_data.py
@@ -98,7 +133,7 @@ Checks the geographic coding shared by DANE and Medicina Legal and compares
 their annual motorcyclist death counts (aggregate comparison only; no
 individual linkage). Results go to `results/exploratory/`.
 
-### Step 6 — Descriptive analysis
+### Step 7 — Descriptive analysis
 
 ```bash
 python scripts/07_descriptive_analysis.py
@@ -107,7 +142,7 @@ python scripts/07_descriptive_analysis.py
 National annual series, departmental rates and descriptive counts by sex, zone
 and role of the forensic head-injury cases (`results/exploratory/`).
 
-### Step 7 — Main models
+### Step 8 — Main models
 
 ```bash
 python scripts/08_primary_model.py
@@ -119,7 +154,7 @@ python scripts/08_primary_model.py
 
 Results go to `results/primary/`.
 
-### Step 8 — Robustness analyses
+### Step 9 — Robustness analyses
 
 ```bash
 python scripts/09b_runt_sensitivity.py
@@ -137,7 +172,7 @@ python scripts/09e_hierarchical_shrinkage.py
 
 Results go to `results/robustness/`.
 
-### Step 9 — Spatial analysis and territorial correlates
+### Step 10 — Spatial analysis and territorial correlates
 
 ```bash
 python scripts/10_spatial_analysis.py
@@ -147,7 +182,7 @@ Global and local Moran's I (queen-contiguity and five-nearest-neighbour weights,
 999 permutations), Spearman correlations and an ordinary least-squares model of
 the log departmental rate. Results go to `results/spatial/`.
 
-### Step 10 — Sensitivity and additional analyses
+### Step 11 — Sensitivity and additional analyses
 
 ```bash
 python scripts/12_sensitivity_analyses.py

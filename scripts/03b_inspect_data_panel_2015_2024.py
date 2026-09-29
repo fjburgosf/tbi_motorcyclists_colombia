@@ -31,7 +31,7 @@ import re
 import json
 from pathlib import Path
 
-PROJECT = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+PROJECT = Path(__file__).resolve().parents[1]
 RAW_DIR = PROJECT / "data" / "raw"
 OUT_DIR = PROJECT / "results" / "exploratory"
 LOG_DIR = PROJECT / "logs"

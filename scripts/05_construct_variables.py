@@ -9,9 +9,10 @@ Outputs:
 import pandas as pd
 from pathlib import Path
 
-INTERIM = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/interim")
-POP_DIR = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/raw/dane_poblacion")
-PROCESSED = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/processed")
+PROJECT = Path(__file__).resolve().parents[1]
+INTERIM = PROJECT / "data" / "interim"
+POP_DIR = PROJECT / "data" / "raw" / "dane_poblacion"
+PROCESSED = PROJECT / "data" / "processed"
 PROCESSED.mkdir(parents=True, exist_ok=True)
 
 TCE_TOPOGRAFICO = "Trauma craneano"

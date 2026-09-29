@@ -23,7 +23,7 @@ import urllib.request
 from pathlib import Path
 import pandas as pd
 
-PROJECT = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis")
+PROJECT = Path(__file__).resolve().parents[1]
 OUT_DIR = PROJECT / "results" / "exploratory"
 
 DANE_PANEL = OUT_DIR / "panel_dane_eevv_2015_2024_tce_moto.json"

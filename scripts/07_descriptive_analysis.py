@@ -2,8 +2,9 @@
 import pandas as pd
 from pathlib import Path
 
-PROCESSED = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/processed")
-OUT = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/results/exploratory")
+PROJECT = Path(__file__).resolve().parents[1]
+PROCESSED = PROJECT / "data" / "processed"
+OUT = PROJECT / "results" / "exploratory"
 OUT.mkdir(parents=True, exist_ok=True)
 
 

@@ -19,10 +19,11 @@ import re
 import json
 from pathlib import Path
 
-RAW_DIR = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/raw/dane_eevv_2024/BD-EEVV-Defuncionesnofetales-2024")
+PROJECT = Path(__file__).resolve().parents[1]
+RAW_DIR = PROJECT / "data" / "raw" / "dane_eevv_2024" / "BD-EEVV-Defuncionesnofetales-2024"
 DTA_FILE = RAW_DIR / "BD-EEVV-Defuncionesnofetales-2024.dta"
-OUT_DIR = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/results/exploratory")
-LOG_DIR = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/logs")
+OUT_DIR = PROJECT / "results" / "exploratory"
+LOG_DIR = PROJECT / "logs"
 
 COLS_NEEDED = [
     "ANO", "MES", "SEXO", "GRU_ED1", "GRU_ED2",

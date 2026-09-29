@@ -5,8 +5,9 @@ estandariza tipos. No inventa columnas ni valores; solo filtra/tipa.
 import pandas as pd
 from pathlib import Path
 
-RAW = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/raw/medicina_legal")
-INTERIM = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/interim")
+PROJECT = Path(__file__).resolve().parents[1]
+RAW = PROJECT / "data" / "raw" / "medicina_legal"
+INTERIM = PROJECT / "data" / "interim"
 INTERIM.mkdir(parents=True, exist_ok=True)
 
 

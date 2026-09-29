@@ -8,8 +8,9 @@ from pathlib import Path
 
 pd.set_option("display.width", 120)
 
-PROCESSED = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/data/processed")
-OUT = Path(r"D:/ACADEMICO/Papers/TBI_data_analysis/results/primary")
+PROJECT = Path(__file__).resolve().parents[1]
+PROCESSED = PROJECT / "data" / "processed"
+OUT = PROJECT / "results" / "primary"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
